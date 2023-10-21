@@ -35,12 +35,8 @@ function App() {
     return strKopia;
   }
   const click = () => {
-    if(getlicznik > 0) {
-      console.log(getRozkladEgipski(getlicznik, getmianownik))
-    }else {
-      alert("Ułamka nie można przedstawić w układzie egipskim")
-    }
-    
+    console.log(getRozkladEgipski(getlicznik, getmianownik))
+  }
   return (
     <>
       <div className="min-h-screen w-full bg-gradient-to-r from-g1 to-g2 text-white">
@@ -65,7 +61,7 @@ function App() {
           </div>
           <button onClick={click} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] font-semibold">Podaj Rozkład Egipski </button>
         </div>
-        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ?<span className="ml-4 text-green-400">{answer}</span> : alert("Nie dziel przez zero!")}</h1> 
+        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{answer}</span> : alert("Nie dziel przez zero!")}</h1> 
         <UlamekFareya />
       </div>
     </>
