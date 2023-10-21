@@ -32,7 +32,7 @@ function App() {
     }
     let strKopia = str.substring(0, str.length - 3);
     {strKopia.includes("1/1") ? setAnswer(strKopia.replaceAll("1/1 +", "")) : null}
-    return strKopia;
+    getlicznik > getmianownik ? null : strKopia
   }
   const click = () => {
     console.log(getRozkladEgipski(getlicznik, getmianownik))
