@@ -11,7 +11,7 @@ function App() {
     listaMianownikow
   ) {
     if (licznik == 0) {
-      return listaMianownikow;
+      alert("Ułamka nie można przedstawić w układzie egipskim");
     }
 
     let nowyMianownik = Math.ceil(mianownik / licznik);
