@@ -31,7 +31,7 @@ function App() {
       str += "1/" + ulamek + " + ";
     }
     let strKopia = str.substring(0, str.length - 3);
-    setAnswer(strKopia.replaceAll("1/1 +", ""))
+    {strKopia.includes("1/1") ? setAnswer(strKopia.replaceAll("1/1", "")) : setAnswer(strKopia)}
     return strKopia;
   }
   const click = () => {
