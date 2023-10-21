@@ -2,7 +2,7 @@ import { useState } from "react";
 import UlamekFareya from "./components/UlamekFareya";
 
 function App() {
-  const [getlicznik,setGetLicznik] = useState(0)
+  const [getlicznik,setGetLicznik] = useState(1)
   const [getmianownik,setGetMianownik] = useState(1)
   const [answer, setAnswer] = useState("")
   function getListaRozkladuEgipskiego(
