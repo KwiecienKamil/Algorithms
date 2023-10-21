@@ -31,8 +31,8 @@ function App() {
       str += "1/" + ulamek + " + ";
     }
     let strKopia = str.substring(0, str.length - 3);
-    {strKopia.includes("1/1") ? setAnswer(strKopia.replaceAll("1/1 +", "")) : null}
-    getlicznik > getmianownik ? null : strKopia
+    {getlicznik > getmianownik ? strKopia.includes("1/1") ? setAnswer(strKopia.replaceAll("1/1 +", "")) : null : null}
+    return strKopia;
   }
   const click = () => {
     console.log(getRozkladEgipski(getlicznik, getmianownik))
