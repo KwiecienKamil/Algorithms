@@ -12,6 +12,7 @@ function App() {
   ) {
     if (licznik == 0) {
       alert("Nie można przedstawić w postaci ułamka egipskiego")
+    }else {
       return listaMianownikow;
     }
 
