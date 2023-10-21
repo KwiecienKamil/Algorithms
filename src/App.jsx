@@ -61,7 +61,9 @@ function App() {
           </div>
           <button onClick={click} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] font-semibold">Podaj Rozkład Egipski </button>
         </div>
-        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{answer}</span> : alert("Nie dziel przez zero!")}</h1> 
+        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{answer.filter((item) => {
+          item !== "1/1"
+        })}</span> : alert("Nie dziel przez zero!")}</h1> 
         <UlamekFareya />
       </div>
     </>
