@@ -1,5 +1,6 @@
 import { useState } from "react";
 import UlamekFareya from "./components/UlamekFareya";
+import Backpack from "./components/Backpack";
 
 function App() {
   const [getlicznik,setGetLicznik] = useState(1)
@@ -31,11 +32,15 @@ function App() {
       str += "1/" + ulamek + " + ";
     }
     let strKopia = str.substring(0, str.length - 3);
-    strKopia.includes("1/1") ? setAnswer(strKopia.replaceAll("1/1 +", "").replace("1/1", "")) : null
+    setAnswer(strKopia)
     return strKopia;
   }
   const click = () => {
-    console.log(getRozkladEgipski(getlicznik, getmianownik))
+    if(parseInt(getlicznik) >= parseInt(getmianownik)) {
+      alert("Bład! Ten ułamek jest większy lub równy 1")
+    }else {
+      getRozkladEgipski(getlicznik, getmianownik)
+    }
   }
   return (
     <>
@@ -61,8 +66,9 @@ function App() {
           </div>
           <button onClick={click} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] font-semibold">Podaj Rozkład Egipski </button>
         </div>
-        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{getlicznik == 0 ? alert("Nie można przedstawić w postaci ułamka egipskiego") : answer}</span> : alert("Nie dziel przez zero!")}</h1> 
+        <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{getlicznik == 0 ? alert("Nie można przedstawić w postaci ułamka egipskiego") : answer}</span> : alert("Nie dziel przez zero!")}</h1>
         <UlamekFareya />
+        <Backpack />
       </div>
     </>
   )

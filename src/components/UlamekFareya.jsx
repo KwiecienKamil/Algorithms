@@ -51,7 +51,7 @@ const UlamekFareya = () => {
     <button onClick={click} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] mt-4 font-semibold">Podaj ciąg Fareya</button>
   </div>
   <h1 className="mt-8 text-center text-[30px]">Odpowiedź:</h1>
-  <div className={dlugosc >= 4 && clicked ? "w-full grid grid-cols-4 place-items-center text-green-400 text-[30px]" : "w-full flex items-center justify-center gap-16 text-green-400 text-[30px]"}>
+  <div className={dlugosc >= 4 && clicked ? "w-full grid grid-cols-6 place-items-center text-green-400 text-[30px]" : "w-full flex items-center justify-center gap-16 text-green-400 text-[30px]"}>
   {farey.map((item) => {
     return <p>{item}</p>
   })}
