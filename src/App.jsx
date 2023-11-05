@@ -6,35 +6,55 @@ function App() {
   const [getlicznik,setGetLicznik] = useState(1)
   const [getmianownik,setGetMianownik] = useState(1)
   const [answer, setAnswer] = useState("")
+
+
   function getListaRozkladuEgipskiego(
     licznik,
     mianownik,
     listaMianownikow
   ) {
+    // jeśli licznik wynosi 0, zwracamy listę mianowników
     if (licznik == 0) {
       return listaMianownikow;
     }
 
+    // Nowy mianownik na podstawie zaokrąglenia wyniku dzielenia mianownika przez licznik
     let nowyMianownik = Math.ceil(mianownik / licznik);
+    
+    // Dodaje nowy mianownik do listy
     listaMianownikow.push(nowyMianownik);
+    
+    // Wywołuje funkcję, przekazując nowe wartości licznika, mianownika i listy
     listaMianownikow = getListaRozkladuEgipskiego(
       licznik * nowyMianownik - mianownik,
       nowyMianownik * mianownik,
       listaMianownikow
     );
+    
+    // Zwróć listę mianowników
     return listaMianownikow;
   }
 
-  function getRozkladEgipski(licznik, mianownik) {
+
+function getRozkladEgipski(licznik, mianownik) {
     let str = "";
+    
+    // Wywołuje funkcję 'getListaRozkladuEgipskiego' i zapisz wynik w zmiennej 'output'
     let output = getListaRozkladuEgipskiego(licznik, mianownik, []);
+    
+    // Tworzy ciąg znaków zawierający ułamki z listy 'output'
     for (let ulamek of output) {
       str += "1/" + ulamek + " + ";
     }
+    
+    // Usuwa ostatniego " + " z ciągu znaków
     let strKopia = str.substring(0, str.length - 3);
-    setAnswer(strKopia)
+    
+    //  zwraca wynik
+    setAnswer(strKopia);
     return strKopia;
   }
+
   const click = () => {
     if(parseInt(getlicznik) >= parseInt(getmianownik)) {
       alert("Bład! Ten ułamek jest większy lub równy 1")
