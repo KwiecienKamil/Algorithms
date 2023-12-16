@@ -4,31 +4,21 @@ const UlamekFareya = () => {
   const [dlugosc, setDlugosc] = useState(0)
   const [farey, setFarey] = useState([])
   const [clicked, setClicked] = useState(false)
-
-  // Funkcja do obliczania największego wspólnego dzielnika dwóch liczb całkowitych
   function gcd(a, b) {
     if (b === 0) return a;
     return gcd(b, a % b);
   }
- 
-  // generowanie ciągu Fareya z ułamków o mianownikach od 1 do 'dlugosc'
   function fareySequence(dlugosc) {
-    let fractions = [];
-    // Iterujemy przez wszystkie możliwe mianowniki od 1 do 'dlugosc'        
+    let fractions = [];     
     for (let denominator = 1; denominator <= dlugosc; denominator++) {
-      // Iterujemy przez możliwe liczniki od 0 do aktualnego mianownika
       for (let numerator = 0; numerator <= denominator; numerator++) {
-        // Obliczamy największy wspólny dzielnik licznika i mianownika
         const commonDivisor = gcd(numerator, denominator);
-        // Redukujemy ułamek do postaci nieskracalnej, dzieląc zarówno licznik, jak i mianownik przez NWD
         const fraction = numerator / commonDivisor + "/" + denominator / commonDivisor;
-        // Sprawdzamy, czy dany ułamek nie znajduje się już w tablicy, aby uniknąć duplikatów
         if (!fractions.includes(fraction)) {
           fractions.push(fraction);
         }
       }
     }
-    // Sortujemy tablicę w kolejności rosnącej 
     fractions.sort((a, b) => eval(a) - (b));
     return fractions;
   }

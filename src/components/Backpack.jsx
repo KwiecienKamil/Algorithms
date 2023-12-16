@@ -3,57 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { currentV } from "../state/store";
 import { currentW } from "../state/store";
 import { currentT } from "../state/store";
-
-
-
 const Backpack = () => {
   const [v1, setV1] = useState(0)
   const [v2, setV2] = useState(0)
   const [v3, setV3] = useState(0)
   const [v4, setV4] = useState(0)
   const [v5, setV5] = useState(0)
-
   const [w1, setW1] = useState(0)
   const [w2, setW2] = useState(0)
   const [w3, setW3] = useState(0)
   const [w4, setW4] = useState(0)
   const [w5, setW5] = useState(0)
-
   const [t, setT] = useState(0)
-
   const dispatch = useDispatch()
-
   const bp = useSelector((state) => state.backpack)
   const [answer,setAnswer] = useState(0);
   const [answer2,setAnswer2] = useState(0);
-
     const values = bp.values;
     const weights = bp.weights;
     const target = bp.target;
-
 const knapSack = (values, weights, n, target) => {
-  // Przypadek gdy nie możemy dodać więcej przedmiotów, zwracamy najmniejszą możliwą wartość
   if (target < 0) {
       return Number.MIN_SAFE_INTEGER;
   }
-  
-  // Przypadek gdy nie ma już dostępnych przedmiotów lub pojemność plecaka wynosi 0, zwracamy 0
   if (n < 0 || target === 0) {
       return 0;
   }
-  
-  // Wybieramy przedmiot n do plecaka i obliczamy wartość dla pozostałych przedmiotów (n - 1)
-  // z uwzględnieniem zmniejszonej pojemności (target - weights[n])
   let include = values[n] + knapSack(values, weights, n - 1, target - weights[n]);
-
-  // Pozostawiamy obecny przedmiot n i oblicz wartość dla pozostałych przedmiotów (n - 1)
   let exclude = knapSack(values, weights, n - 1, target);
-  
-  // Zwracamy maksymalną wartość, którą można uzyskać
   return Math.max(include, exclude);
 }
-
-// Aktualizacja globalnego stanu wartości, wag i pojemności plecaka
 const handleDis = () => {
   if(v1 < 0 || v2 < 0 || v3 < 0 || v4 < 0 || v5 < 0) {
     alert("Nie może być mniejsze od 0")
@@ -62,9 +41,7 @@ const handleDis = () => {
     dispatch(currentW([w1,w2,w3,w4,w5]))
     dispatch(currentT(t))
   }
-  
 }
-// Wywołanie funkcji
 const handleClick = () => {
   const ans = knapSack(values, weights, values.length - 1, target)
   let arr = [v1,v2,v3,v4,v5]
