@@ -22,8 +22,10 @@ const Backpack = () => {
   const [t, setT] = useState(0)
 
   const dispatch = useDispatch()
+
   const bp = useSelector((state) => state.backpack)
   const [answer,setAnswer] = useState(0);
+  const [answer2,setAnswer2] = useState(0);
 
     const values = bp.values;
     const weights = bp.weights;
@@ -40,29 +42,35 @@ const knapSack = (values, weights, n, target) => {
       return 0;
   }
   
-  // Wybierz przedmiot n do plecaka i oblicz wartość dla pozostałych przedmiotów (n - 1)
+  // Wybieramy przedmiot n do plecaka i obliczamy wartość dla pozostałych przedmiotów (n - 1)
   // z uwzględnieniem zmniejszonej pojemności (target - weights[n])
   let include = values[n] + knapSack(values, weights, n - 1, target - weights[n]);
 
-  // Pozostaw obecny przedmiot n i oblicz wartość dla pozostałych przedmiotów (n - 1)
+  // Pozostawiamy obecny przedmiot n i oblicz wartość dla pozostałych przedmiotów (n - 1)
   let exclude = knapSack(values, weights, n - 1, target);
   
-  // Zwróć maksymalną wartość, którą można uzyskać
+  // Zwracamy maksymalną wartość, którą można uzyskać
   return Math.max(include, exclude);
 }
 
-// Wywołaj funkcję knapSack i wyświetl wynik
+// Aktualizacja globalnego stanu wartości, wag i pojemności plecaka
 const handleDis = () => {
-  dispatch(currentV([v1,v2,v3,v4,v5]))
-  dispatch(currentW([w1,w2,w3,w4,w5]))
-  dispatch(currentT(t))
-
-
+  if(v1 < 0 || v2 < 0 || v3 < 0 || v4 < 0 || v5 < 0) {
+    alert("Nie może być mniejsze od 0")
+  }else {
+    dispatch(currentV([v1,v2,v3,v4,v5]))
+    dispatch(currentW([w1,w2,w3,w4,w5]))
+    dispatch(currentT(t))
+  }
+  
 }
-
+// Wywołanie funkcji
 const handleClick = () => {
   const ans = knapSack(values, weights, values.length - 1, target)
-  setAnswer(ans)
+  let arr = [v1,v2,v3,v4,v5]
+  const ansV = arr.filter((item) => item !== 0)
+    setAnswer(`Liczba przedmiotów w plecaku: ${ansV.length}`)
+    setAnswer2(`Suma wartości przedmiotów: ${(v1*w1) + (v2*w2) + (v3*w3) + (v4*w4) + (v5*w5)}`)
 }
 
   return (
@@ -92,8 +100,9 @@ const handleClick = () => {
     <button onClick={handleDis} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] font-semibold text-[16px] mb-8">Zapisz wartości</button>
     <div className="flex items-center justify-center gap-8">
     <button onClick={handleClick} className="p-2 bg-blue-400 rounded-lg hover:brightness-[90%] font-semibold text-[16px]">Podaj Odpowiedź</button>
-    <p className='text-[20px]'>Odpowiedź: <span className="text-green-400 text-[30px]">{answer}</span></p>
     </div>
+    <p className="text-green-400 text-[30px]">{answer}</p>
+    <p className="text-green-400 text-[30px]">{answer2}</p>
   </div>
   );
 };

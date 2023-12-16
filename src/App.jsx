@@ -1,6 +1,7 @@
 import { useState } from "react";
 import UlamekFareya from "./components/UlamekFareya";
 import Backpack from "./components/Backpack";
+import Sorting from "./components/Sorting";
 
 function App() {
   const [getlicznik,setGetLicznik] = useState(1)
@@ -89,6 +90,7 @@ function getRozkladEgipski(licznik, mianownik) {
         <h1 className="mt-8 text-center text-[30px]">Odpowiedź:{getmianownik > 0 ? <span className="ml-4 text-green-400">{getlicznik == 0 ? alert("Nie można przedstawić w postaci ułamka egipskiego") : answer}</span> : alert("Nie dziel przez zero!")}</h1>
         <UlamekFareya />
         <Backpack />
+        <Sorting />
       </div>
     </>
   )
